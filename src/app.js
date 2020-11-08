@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const {NODE_ENV} = require('./config')
+const authRouter = require("./routes/jwtAuth")
+const dashRouter = require('./routes/dashboard')
 
 const app = express()
 
@@ -14,6 +16,10 @@ const morganOption = (NODE_ENV === 'production')
 app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
+app.use(express.json())
+
+app.use("/auth", authRouter);
+app.use('/dashboard', dashRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
