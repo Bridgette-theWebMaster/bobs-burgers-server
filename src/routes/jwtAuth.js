@@ -24,7 +24,7 @@ router.post('/register', validInfo, async (req, res) => {
         ])
 
         if (user.rows.length !== 0){
-            return res.status(401).send('User already exists')
+            return res.status(401).json('User already exists')
         }
         //bcrypt user password
         const saltRound = 10;
@@ -76,7 +76,7 @@ router.post("/login", validInfo, async(req, res) => {
     }
 })
 
-router.get("/verify", authorize, async(req, res) => {
+router.get("/verify", authorize, async (req, res) => {
     try{ 
 
         res.json(true);
