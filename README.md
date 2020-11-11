@@ -1,26 +1,71 @@
-# Express Boilerplate!
+# Bobs Burgers Server
 
-This is a boilerplate project used for starting new projects!
+## WELCOME TO BOB'S BURGERS
+A humbly own family restaurant serving quality diner food.
+Create an account with Bob's Burgers.
+Select from the menu, order for yourself or someone else.
+Orders of all sizes completed in 9:30 minutes or it's free.
+Live site: https://bobs-burgers.vercel.app/
+Front end repo: https://github.com/Bridgette-theWebMaster/bobs-burgers-burger-orderer
 
-## Set up
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Tech
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+### Back end
+-Node
+-Express
+-Postgresql
 
-## Scripts
+### Testing
+-Mocha
+-Chai
+-Supertest
 
-Start the application `npm start`
+### Production
+-Heroku deployment
 
-Start nodemon for the application `npm run dev`
+##Authentication
+| Method    | Endpoint           | Usage                 | Returns      |
+| ------    | --------           | -----                 | -------      |
+| POST      | /auth/login        | Authenticate a user   | JWT          | 
 
-Run the tests `npm test`
+### `/auth/login`
+#### POST
+Endpoint for authenticating users
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | name, password | JSON containing a username and password string |
 
-## Deploying
+##### Responses
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+| Code | Description |
+| --- | --- |
+| 200 | Receive JWT with authenticated user_name and id inside payload | 
+| 400 | Missing '{user_name OR password}' in request body | 
+| 400 | Incorrect user_name or password | 
+
+
+
+
+## User Registration 
+| Method    | Endpoint        | Usage                 | Returns         |
+| ------    | --------        | -----                 | -------         |
+| POST      | /auth/register     | Register new user     | User Object     | 
+
+### `/api/users`
+#### POST
+Endpoint for registering new users
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | name, email, password | JSON containing username, email, password strings |
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 201 | Respond with object containing user data | 
+| 400 | Missing '{user_name OR email OR password}' in request body | 
+| 400 | Error response object containing a number of validation error messages | 

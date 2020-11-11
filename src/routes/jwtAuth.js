@@ -33,7 +33,7 @@ router.post('/register', validInfo, async (req, res) => {
         const bcryptPassword = await bcrypt.hash(password, salt);
         //enter new user in DB
         const newUser = await pool.query("INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *", [name, email, bcryptPassword])
-        //res.json()
+        
         //generating jwt token
         const jwtToken = jwtGenerator(newUser.rows[0].id)
 
@@ -76,6 +76,7 @@ router.post("/login", validInfo, async(req, res) => {
     }
 })
 
+//verifying
 router.get("/verify", authorize, async (req, res) => {
     try{ 
 
