@@ -8,6 +8,8 @@ const {NODE_ENV} = require('./config')
 
 const authRouter = require("./routes/jwtAuth")
 const dashRouter = require('./routes/dashboard')
+const burgerRouter = require('./routes/burgersRouter')
+
 
 const app = express()
 
@@ -21,7 +23,10 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/auth", authRouter);
-app.use('/dashboard', dashRouter)
+app.use('/dash', dashRouter)
+app.use('/api', burgerRouter)
+
+
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

@@ -77,7 +77,7 @@ router.post("/login", validInfo, async(req, res) => {
 })
 
 //verifying
-router.get("/verify", authorize, async (req, res) => {
+router.post("/verify", authorize, async (req, res) => {
     try{ 
 
         res.json(true);
@@ -87,4 +87,6 @@ router.get("/verify", authorize, async (req, res) => {
         res.status(500).send("Server Error")
     }
 })
+
+
 module.exports = router
