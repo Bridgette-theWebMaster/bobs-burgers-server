@@ -12,19 +12,19 @@ Front end repo: https://github.com/Bridgette-theWebMaster/bobs-burgers-burger-or
 ## Tech
 
 ### Back end
--Node
--Express
--Postgresql
+- Node
+- Express
+- Postgresql
 
 ### Testing
--Mocha
--Chai
--Supertest
+- Mocha
+- Chai
+- Supertest
 
 ### Production
 -Heroku deployment
 
-##Authentication
+## Authentication
 | Method    | Endpoint           | Usage                 | Returns      |
 | ------    | --------           | -----                 | -------      |
 | POST      | /auth/login        | Authenticate a user   | JWT          | 
@@ -69,3 +69,60 @@ Endpoint for registering new users
 | 201 | Respond with object containing user data | 
 | 400 | Missing '{user_name OR email OR password}' in request body | 
 | 400 | Error response object containing a number of validation error messages | 
+
+
+
+## User Modification
+| Method    | Endpoint        | Usage                 | Returns         |
+| ------    | --------        | -----                 | -------         |
+| GET      | /dash/     | Review account     | User Object     | 
+
+### `/dash/`
+#### GET
+Endpoint for reviewing account info (i.e. updating password; deleting user)
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | jwtToken | JSON containing user_id |
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 201 | Respond with object containing user name | 
+
+| Method    | Endpoint        | Usage                 | Returns         |
+| ------    | --------        | -----                 | -------         |
+| GET      | /dash/     | Review account     | User Object     | 
+
+### `/dash/user/:id`
+#### PATCH
+Endpoint for updating password
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | jwtToken | JSON containing user_id |
+| JSON | password | JSON containing password string |
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 201 | Respond with updated password | 
+
+### `/dash/user/:id`
+#### DELETE
+Endpoint for deleting user account
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | jwtToken | JSON containing user_id |
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 201 | Respond with account deleted|

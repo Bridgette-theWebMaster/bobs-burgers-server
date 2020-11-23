@@ -8,7 +8,9 @@ const { NODE_ENV } = require("./config");
 const authRouter = require("./routes/jwtAuth");
 const dashRouter = require("./routes/dashboard");
 
-const app = express();
+const authRouter = require("./routes/jwtAuth");
+const dashRouter = require("./routes/dashboard");
+const burgerRouter = require("./routes/burgersRouter");
 
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
@@ -19,6 +21,10 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/dashboard", dashRouter);
+
+app.use("/auth", authRouter);
+app.use("/dash", dashRouter);
+app.use("/api", burgerRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
