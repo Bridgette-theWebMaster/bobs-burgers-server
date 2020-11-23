@@ -7,10 +7,9 @@ const { NODE_ENV } = require("./config");
 
 const authRouter = require("./routes/jwtAuth");
 const dashRouter = require("./routes/dashboard");
-
-const authRouter = require("./routes/jwtAuth");
-const dashRouter = require("./routes/dashboard");
 const burgerRouter = require("./routes/burgersRouter");
+
+const app = express();
 
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
@@ -18,9 +17,6 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-
-app.use("/api/auth", authRouter);
-app.use("/api/dashboard", dashRouter);
 
 app.use("/auth", authRouter);
 app.use("/dash", dashRouter);
